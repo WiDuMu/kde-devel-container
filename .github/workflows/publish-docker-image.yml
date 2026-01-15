@@ -56,5 +56,5 @@ jobs:
           tags: |
             ghcr.io/widumu/kde-devel-container:latest
             ghcr.io/widumu/kde-devel-container:${{ env.THIS_TAG }}
-            widumu/kde-devel-container:latest
-            widumu/kde-devel-container:${{ env.TODAY }}.0.${{ github.run_number }}
+            # widumu/kde-devel-container:latest
+            # widumu/kde-devel-container:${{ env.TODAY }}.0.${{ github.run_number }}
