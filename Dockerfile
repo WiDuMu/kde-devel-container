@@ -4,14 +4,7 @@ ARG USERNAME=dev
 ARG UID=1000
 ARG GID=$UID
 
-RUN dnf install -y sudo
-
-RUN groupadd -g $GID $USERNAME \
-    && useradd -m -u $UID -g $GID $USERNAME \
-    && usermod -aG wheel $USERNAME \
-    && echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
-
-RUN dnf update -y && dnf install -y --assumeyes \
+RUN dnf update -y && dnf install -y \
     @development-tools \
     git \
     curl \
@@ -26,6 +19,7 @@ RUN dnf update -y && dnf install -y --assumeyes \
     bat \
     clangd \
     clang \
+    sudo \
     extra-cmake-modules \
     kf6-kcoreaddons-devel \
     kf6-ki18n-devel \
@@ -35,5 +29,10 @@ RUN dnf update -y && dnf install -y --assumeyes \
     kf6-kwidgetsaddons-devel \
     kf6-kio-devel \
     kf6-kiconthemes-devel
+
+RUN groupadd -g $GID $USERNAME \
+    && useradd -m -u $UID -g $GID $USERNAME \
+    && usermod -aG wheel $USERNAME \
+    && echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 USER $USERNAME
