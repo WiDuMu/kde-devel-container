@@ -12,7 +12,6 @@ jobs:
       contents: write
       packages: write
       actions: write
-      artifact_metadata: write
     steps:
       - name: Get current date
         id: date
